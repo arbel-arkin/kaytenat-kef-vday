@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קייטנת כיף - Veterans Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #46649b;
+  --box:      #0f3060;
+  --text:     #efe3ed;
+  --text-dim: rgba(239, 227, 237, 0.5);
+  --border:   rgba(239, 227, 237, 0.2);
+  --input-bg: #162e58;
+  --radius:   14px;
+  --shadow:   0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  padding-bottom: 50px;
+  overflow-x: hidden;
+}
+
+@keyframes fadeIn   { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideDown{ from{opacity:0;max-height:0} to{opacity:1;max-height:400px} }
+
+/* ── Header ── */
+.header { text-align: center; padding: 54px 22px 20px; }
+.header h1 {
+  font-family: 'Varela Round', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+.header .vday {
+  font-family: 'Varela Round', sans-serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  color: var(--text);
+  opacity: 0.9;
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+.header .sub {
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+/* ── Pills ── */
+.pills {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  justify-content: center;
+  max-width: 580px; margin: 22px auto 0; padding: 0 16px;
+}
+.pill {
+  background: var(--box);
+  border-radius: 50px;
+  padding: 6px 15px;
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Theme block ── */
+.theme-block {
+  display: flex; justify-content: center;
+  margin: 12px auto 0; padding: 0 16px;
+}
+.theme-tag {
+  background: var(--box);
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+}
+
+.wrap { max-width: 580px; margin: 28px auto 0; padding: 0 14px; }
+
+/* ── Section title ── */
+.harshama { text-align: center; margin-bottom: 14px; }
+.harshama h2 {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.9rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ── Price card ── */
+.price-card {
+  background: var(--box);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 22px 24px 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.price-card .amount {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+}
+.price-card .note {
+  font-size: 0.88rem;
+  color: var(--text);
+  opacity: 0.7;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--box);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.sec {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px dashed var(--border);
+}
+
+/* ── Form fields ── */
+.field { margin-bottom: 13px; }
+.field:last-child { margin-bottom: 0; }
+.lbl {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.lbl .req { font-weight: 700; }
+
+input[type=text], input[type=tel], select, textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.94rem;
+  color: var(--text);
+  background: var(--input-bg);
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  direction: rtl;
+}
+input[type=tel] { direction: ltr; text-align: right; }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(239, 227, 237, 0.15);
+}
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+textarea { resize: vertical; min-height: 65px; }
+select option { background: var(--box); color: var(--text); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ── Parent 2 toggle ── */
+.parent2-toggle {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(185, 223, 255, 0.07);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: background .15s;
+}
+.parent2-toggle:hover { background: rgba(185, 223, 255, 0.13); }
+.parent2-toggle input[type=checkbox] {
+  accent-color: var(--text);
+  width: 16px; height: 16px; cursor: pointer;
+}
+.parent2-fields {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  animation: slideDown 0.3s ease-out;
+}
+.parent2-fields.vis { display: block; }
+
+/* ── Discount options ── */
+.disc-opts { display: flex; flex-direction: column; gap: 8px; }
+.disc-opt {
+  border: 1.5px solid var(--border);
+  border-radius: 11px;
+  padding: 13px 15px;
+  cursor: pointer;
+  background: var(--input-bg);
+  display: flex; align-items: flex-start; gap: 10px;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.disc-opt:hover { border-color: var(--text); }
+.disc-opt.on { border-color: var(--text); background: rgba(185, 223, 255, 0.08); }
+.disc-opt input[type=checkbox] {
+  width: 16px; height: 16px;
+  accent-color: var(--text);
+  margin-top: 3px; flex-shrink: 0; cursor: pointer;
+}
+.opt-title { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+.badge {
+  margin-right: auto; flex-shrink: 0; align-self: center;
+  background: var(--text);
+  color: var(--box);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+/* ── Sub fields ── */
+.sub-f {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  display: none;
+}
+.sub-f.vis { display: block; animation: slideDown 0.3s ease-out; }
+
+/* ── Price summary ── */
+.p-sum {
+  background: rgba(185, 223, 255, 0.06);
+  border-radius: 10px;
+  padding: 13px 15px;
+  margin-top: 13px;
+  display: none;
+}
+.p-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.86rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.p-disc { opacity: 0.8; }
+.p-total {
+  display: flex; justify-content: space-between;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+  margin-top: 7px; padding-top: 8px;
+}
+
+/* ── Payment blurb ── */
+.payment-blurb {
+  background: rgba(185, 223, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.payment-blurb h3 {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2rem; font-weight: 400;
+  color: var(--text); margin-bottom: 7px;
+}
+.payment-blurb p {
+  font-size: 0.93rem; line-height: 1.6;
+  color: var(--text); opacity: 0.88;
+}
+.payment-blurb strong { font-weight: 700; opacity: 1; }
+
+/* ── Submit button ── */
+.btn {
+  width: 100%; padding: 15px;
+  background: var(--text);
+  color: var(--box);
+  border: none; border-radius: 12px;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s, transform .15s;
+}
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* ── Footer ── */
+.foot {
+  text-align: center; color: var(--text);
+  font-size: 0.85rem; margin-top: 14px;
+  font-weight: 500; opacity: 0.75;
+}
+.foot bdi { direction: ltr; unicode-bidi: embed; }
+
+/* ── Success ── */
+#ok {
+  display: none; text-align: center;
+  padding: 48px 26px;
+  background: var(--box);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+#ok.show { display: block; animation: fadeIn 0.4s ease; }
+#ok .icon { font-size: 2.6rem; margin-bottom: 14px; line-height: 1; }
+#ok h2 {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 400; font-size: 1.55rem;
+  color: var(--text); margin-bottom: 12px;
+}
+#ok p {
+  color: var(--text); font-size: 0.98rem;
+  line-height: 1.75; max-width: 420px;
+  margin: 0 auto; opacity: 0.88;
+}
+#ok strong { font-weight: 700; opacity: 1; }
+
+@media (max-width: 460px) {
+  .two { grid-template-columns: 1fr; }
+  .card { padding: 19px 16px; }
+  .header { padding: 44px 20px 18px; }
+  .harshama h2 { font-size: 1.65rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>קייטנת כיף 🤍</h1>
+  <div class="vday">Veterans Day</div>
+  <p class="sub">יום מלא בכיף, פעילויות, יצירה והרפתקאות בקייטנת כיף<bdi>!</bdi></p>
+</div>
+
+<div class="pills">
+  <span class="pill">11 לנובמבר</span>
+  <span class="pill">09:00-15:30</span>
+  <span class="pill">אזור סאניוויל אורטגה</span>
+  <span class="pill">בנות ב-TK-ב'</span>
+</div>
+
+<div class="theme-block">
+  <div class="theme-tag">נושא היום: Winter Wonderland ❄️</div>
+</div>
+
+<div class="wrap">
+  <div id="form-wrap">
+
+    <div class="harshama"><h2>הרשמה</h2></div>
+
+    <div class="price-card">
+      <div class="amount">$70</div>
+      <div class="note">ליום של הקייטנה</div>
+    </div>
+
+    <form id="form" action="https://formspree.io/f/mzdyvney" method="POST" novalidate>
+      <p style="display:none"><label>Don't fill this out: <input name="_gotcha"></label></p>
+      <input type="hidden" name="_subject" value="🤍 הרשמה חדשה לקייטנת כיף - Veterans Day">
+
+      <!-- Child -->
+      <div class="card">
+        <div class="sec">פרטי הילדה</div>
+        <div class="field">
+          <label class="lbl">שם הילדה <span class="req">*</span></label>
+          <input type="text" name="c1_name" required>
+        </div>
+        <div class="field" style="margin-top:10px;">
+          <label class="lbl">באיזו כיתה היא? <span class="req">*</span></label>
+          <select name="c1_grade" required>
+            <option value="">בחרי...</option>
+            <option>TK</option>
+            <option>K</option>
+            <option>א</option>
+            <option>ב</option>
+          </select>
+        </div>
+        <div class="field" style="margin-top:16px;">
+          <label class="lbl">אלרגיות</label>
+          <input type="text" name="c1_allergy">
+        </div>
+      </div>
+
+      <!-- Parent -->
+      <div class="card">
+        <div class="sec">פרטי ההורה</div>
+        <div class="two">
+          <div class="field">
+            <label class="lbl">שם <span class="req">*</span></label>
+            <input type="text" name="parent_name" required>
+          </div>
+          <div class="field">
+            <label class="lbl">טלפון <span class="req">*</span></label>
+            <input type="tel" name="phone" required>
+          </div>
+        </div>
+
+        <label class="parent2-toggle" onclick="toggleParent2(event)">
+          <input type="checkbox" id="p2check">
+          <span>הוסף הורה נוסף</span>
+        </label>
+
+        <div class="parent2-fields" id="p2fields">
+          <div class="two">
+            <div class="field">
+              <label class="lbl">שם</label>
+              <input type="text" name="parent2_name">
+            </div>
+            <div class="field">
+              <label class="lbl">טלפון</label>
+              <input type="tel" name="parent2_phone">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discount — sister only -->
+      <div class="card">
+        <div class="sec">הנחות</div>
+        <div class="disc-opts">
+          <div class="disc-opt" id="d-two" onclick="toggleDisc(event, this)">
+            <input type="checkbox" name="disc_two" value="yes">
+            <div style="flex:1">
+              <div class="opt-title">להירשם עם אחות</div>
+              <div class="sub-f" id="sf-two">
+                <div class="field" style="margin-top:10px;">
+                  <label class="lbl">שם האחות</label>
+                  <input type="text" name="c2_name">
+                </div>
+                <div class="two" style="margin-top:8px;">
+                  <div class="field">
+                    <label class="lbl">כיתה</label>
+                    <select name="c2_grade">
+                      <option value="">בחרי...</option>
+                      <option>TK</option>
+                      <option>K</option>
+                      <option>א</option>
+                      <option>ב</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label class="lbl">אלרגיות</label>
+                    <input type="text" name="c2_allergy">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="badge">-$10 לאחות</span>
+          </div>
+        </div>
+
+        <div class="p-sum" id="psum">
+          <div class="p-row"><span>מחיר לילדה אחת</span><span>$70</span></div>
+          <div class="p-row"><span>מחיר לילדה אחת</span><span>$70</span></div>
+          <div class="p-row p-disc"><span>הנחה לאחיות</span><span>−$10</span></div>
+          <div class="p-total"><span>סה"כ לתשלום</span><span>$130</span></div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="card">
+        <div class="sec">שאלות / עוד משהו?</div>
+        <textarea name="notes"></textarea>
+      </div>
+
+      <!-- Payment -->
+      <div class="payment-blurb">
+        <h3>תשלום</h3>
+        <p>
+          לאחר מילוי הטופס <strong>ארבל</strong> תיצור קשר איתכם עם פרטי התשלום כדי להשלים את ההרשמה לקייטנה.
+        </p>
+      </div>
+
+      <input type="hidden" name="computed_total" id="computed_total" value="$70">
+      <input type="hidden" name="discount_applied" id="discount_applied" value="none">
+
+      <button type="submit" class="btn">אישור הרשמה</button>
+    </form>
+
+    <p class="foot">לפרטים נוספים: <bdi>(341) 226-9724</bdi></p>
+
+    <div id="ok">
+      <div class="icon">🤍</div>
+      <h2>ההרשמה נשלחה בהצלחה<bdi>!</bdi></h2>
+      <p>
+        <strong>ארבל</strong> תיצור איתכם קשר עם פרטי התשלום כדי להשלים את ההרשמה לקייטנה.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleDisc(e, card) {
+  if (e.target.closest('.sub-f')) return;
+  if (e.target.tagName !== 'INPUT') {
+    e.preventDefault();
+    const cb = card.querySelector('input[type=checkbox]');
+    cb.checked = !cb.checked;
+  }
+  const cb = card.querySelector('input[type=checkbox]');
+  card.classList.toggle('on', cb.checked);
+  document.getElementById('sf-two').classList.toggle('vis', cb.checked);
+  if (!cb.checked) {
+    const f = document.querySelector('[name=c2_name]'); if (f) f.value = '';
+    updatePrice();
+  } else {
+    updatePrice();
+  }
+}
+
+document.querySelector('input[name=disc_two]').addEventListener('change', (e) => {
+  const card = e.target.closest('.disc-opt');
+  card.classList.toggle('on', e.target.checked);
+  document.getElementById('sf-two').classList.toggle('vis', e.target.checked);
+  if (!e.target.checked) { const f = document.querySelector('[name=c2_name]'); if (f) f.value = ''; }
+  updatePrice();
+});
+
+function updatePrice() {
+  const on   = document.querySelector('input[name=disc_two]').checked;
+  const psum = document.getElementById('psum');
+  const hid  = document.getElementById('computed_total');
+  const dapp = document.getElementById('discount_applied');
+  if (!on) {
+    psum.style.display = 'none';
+    hid.value = '$70'; dapp.value = 'none';
+  } else {
+    psum.style.display = 'block';
+    hid.value = '$130 ($70 + $60 לאחות)'; dapp.value = 'sister';
+  }
+}
+
+function toggleParent2(e) {
+  if (e.target.tagName !== 'INPUT') {
+    e.preventDefault();
+    const cb = document.getElementById('p2check');
+    cb.checked = !cb.checked;
+  }
+  const checked = document.getElementById('p2check').checked;
+  document.getElementById('p2fields').classList.toggle('vis', checked);
+  if (!checked) {
+    document.querySelector('[name=parent2_name]').value = '';
+    document.querySelector('[name=parent2_phone]').value = '';
+  }
+}
+
+document.getElementById('p2check').addEventListener('change', (e) => {
+  document.getElementById('p2fields').classList.toggle('vis', e.target.checked);
+  if (!e.target.checked) {
+    document.querySelector('[name=parent2_name]').value = '';
+    document.querySelector('[name=parent2_phone]').value = '';
+  }
+});
+
+document.getElementById('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let ok = true;
+  this.querySelectorAll('[required]').forEach(f => {
+    f.style.borderColor = '';
+    if (!f.value.trim()) { f.style.borderColor = 'var(--text)'; ok = false; }
+  });
+  if (document.querySelector('input[name=disc_two]').checked) {
+    const c2 = this.querySelector('[name=c2_name]');
+    if (!c2.value.trim()) { c2.style.borderColor = 'var(--text)'; ok = false; }
+  }
+  if (!ok) return;
+
+  fetch(this.action, {
+    method: 'POST',
+    body: new FormData(this),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      this.style.display = 'none';
+      document.querySelector('.price-card').style.display = 'none';
+      document.querySelector('.harshama').style.display = 'none';
+      document.querySelector('.foot').style.display = 'none';
+      document.getElementById('ok').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      r.json().then(d => {
+        const err = (d.errors && d.errors.map(x => x.message).join(', ')) || 'שגיאה';
+        alert('שגיאה: ' + err + '\nאנא צרו קשר עם ארבל: (341) 226-9724');
+      }).catch(() => alert('שגיאה בשליחה. צרו קשר עם ארבל: (341) 226-9724'));
+    }
+  }).catch(() => alert('שגיאה בחיבור. נסו שוב או צרו קשר עם ארבל: (341) 226-9724'));
+});
+</script>
+</body>
+</html>

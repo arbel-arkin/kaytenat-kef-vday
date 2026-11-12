@@ -472,6 +472,37 @@ select option { background: var(--box); color: var(--text); }
         </div>
       </div>
 
+      <!-- Photo Consent -->
+      <div class="card">
+        <div class="sec">📸 אישור צילום</div>
+        <div class="disc-opt" id="photo-toggle" onclick="togglePhoto(event, this)">
+          <input type="checkbox" name="photo_consent" value="yes" id="photo_cb">
+          <div style="flex:1">
+            <div class="opt-title">אני מאשר/ת לארבל ואילה לצלם את הבת שלי במהלך פעילויות הקייטנה ולהוסיף את התמונות לאלבום משותף שיהיה זמין להורים מהקייטנה.</div>
+          </div>
+        </div>
+
+        <div class="sub-f" id="photo-opts">
+          <p style="font-size:0.87rem;color:var(--text);line-height:1.7;margin-bottom:18px;padding-top:12px;">
+            <strong>אישור לפרסום התמונות</strong> - מדי פעם אנחנו משתמשות בתמונות מהקייטנה בשביל פרסום. אנא בחרו באפשרות שאתם מעדיפים:
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <label class="disc-opt" style="cursor:pointer;padding:14px 16px;" onclick="event.stopPropagation()">
+              <input type="radio" name="photo_usage" value="with_face" style="width:16px;height:16px;accent-color:var(--text);margin-top:3px;flex-shrink:0;">
+              <div style="flex:1;font-size:0.9rem;color:var(--text);line-height:1.5;">אני מאשר/ת שהתמונות של הבת שלי יוכלו לשמש לפרסום הקייטנה, כולל תמונות שבהן מופיעות הפנים שלה.</div>
+            </label>
+            <label class="disc-opt" style="cursor:pointer;padding:14px 16px;" onclick="event.stopPropagation()">
+              <input type="radio" name="photo_usage" value="no_face" style="width:16px;height:16px;accent-color:var(--text);margin-top:3px;flex-shrink:0;">
+              <div style="flex:1;font-size:0.9rem;color:var(--text);line-height:1.5;">אני מאשר/ת שהתמונות של הבת שלי יוכלו לשמש לפרסום הקייטנה, בלי הפנים שלה.</div>
+            </label>
+            <label class="disc-opt" style="cursor:pointer;padding:14px 16px;" onclick="event.stopPropagation()">
+              <input type="radio" name="photo_usage" value="album_only" style="width:16px;height:16px;accent-color:var(--text);margin-top:3px;flex-shrink:0;">
+              <div style="flex:1;font-size:0.9rem;color:var(--text);line-height:1.5;">אני מאשר/ת שתמונות של הבת שלי יהיו באלבום להורים בלבד.</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
       <!-- Notes -->
       <div class="card">
         <div class="sec">שאלות / עוד משהו?</div>
@@ -545,6 +576,33 @@ function updatePrice() {
     hid.value = '$130 ($70 + $60 לאחות)'; dapp.value = 'sister';
   }
 }
+
+function togglePhoto(e, card) {
+  if (e.target.closest('.sub-f')) return;
+  if (e.target.tagName !== 'INPUT') {
+    e.preventDefault();
+    const cb = card.querySelector('#photo_cb');
+    cb.checked = !cb.checked;
+  }
+  const cb = document.getElementById('photo_cb');
+  card.classList.toggle('on', cb.checked);
+  document.getElementById('photo-opts').classList.toggle('vis', cb.checked);
+  if (!cb.checked) document.querySelectorAll('[name=photo_usage]').forEach(r => r.checked = false);
+}
+
+document.getElementById('photo_cb').addEventListener('change', (e) => {
+  document.getElementById('photo-opts').classList.toggle('vis', e.target.checked);
+  document.getElementById('photo-toggle').classList.toggle('on', e.target.checked);
+  if (!e.target.checked) document.querySelectorAll('[name=photo_usage]').forEach(r => r.checked = false);
+});
+
+document.querySelectorAll('[name=photo_usage]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll('[name=photo_usage]').forEach(o => {
+      o.closest('.disc-opt').classList.toggle('on', o.checked);
+    });
+  });
+});
 
 function toggleParent2(e) {
   if (e.target.tagName !== 'INPUT') {
